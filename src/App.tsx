@@ -12,7 +12,7 @@ function App() {
   
   return (
     <AppContextProvider>
-      <Router basename="/mp2">
+      <Router basename="/MP2">
       {/* <Router> */}
       <Header />
       <Search/>
