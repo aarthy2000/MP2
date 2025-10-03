@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useAppContext } from "./AppContextProvider";
 import { Artwork } from "./model";
 
@@ -7,7 +7,7 @@ function Sort(){
     const [sort, setSort] = useState<string>("");
     const [sortOrder, setSortOrder] = useState<string>("asc");
 
-    useEffect(()=>{
+    const sortedArtworks = useMemo(()=>{
         const sorted = [...artworks];
         const weight = sortOrder === "asc" ? 1: -1;
         if(sort === "artist"){
@@ -17,9 +17,13 @@ function Sort(){
             sorted.sort((a: Artwork,b:Artwork) => weight*a.title.localeCompare(b.title))
         }
         
-       setArtworks(sorted);
-       console.log("sorted artworks");
-    },[sort, sortOrder])
+       return sorted;
+    },[sort, sortOrder, artworks])
+
+    useEffect(() => {
+        setArtworks(sortedArtworks);
+    }, [sortedArtworks, setArtworks]);
+
     return (
         <div>
            <select value={sort} onChange={e => setSort(e.target.value)}>

@@ -2,7 +2,7 @@ import Gallery from './Gallery'
 import './App.css';
 import Header from './Header';
 import Search from './Search';
-import Filter from './Filter';
+// import Filter from './Filter';
 import Detail from './Detail';
 import Pagination from './Pagination';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -19,7 +19,7 @@ function App() {
       <Header />
       <Search/>
       <Sort/>
-      <Filter />
+      {/* <Filter /> */}
       <Routes>
         <Route path="/list" element={<List/>} />
         <Route path="/" element={<Gallery/>} />
