@@ -29,6 +29,9 @@ function Detail(){
                     <h2>Artist: {artworkDetail.artwork.artist}</h2>
                     <h3>Date start: {artworkDetail.date_start}</h3>
                     <h3>Date end:{artworkDetail.date_end}</h3>
+                    <h3>Medium: {artworkDetail.artwork.medium}</h3>
+                    <h3>Category: {artworkDetail.artwork.category_titles}</h3>
+                    <h3>Artwork type: {artworkDetail.artwork.artwork_type_title}</h3>
                   
                 </div>
                 </>

@@ -71,14 +71,14 @@ export async function get_specific_artwork(id: string){
           imageId: item.image_id,
           imagePath: base_image_url + "/"+ item.image_id + '/full/843,/0/default.jpg',
           artist: item.artist_title,
-          api_link: item.api_link
+          api_link: item.api_link,
+          medium: item.medium_display,
+          artwork_type_title: item.artwork_type_title,
+          category_titles: item.category_titles,
         };
     let artwork_detail: DetailView = {
         date_start: item.date_start,
         date_end: item.date_end,
-        medium: item.medium_display,
-        artwork_type_title: item.artwork_type_title,
-        category_titles: item.category_titles,
         dimensions: item.category,
         artwork: artwork_item
       };

@@ -6,7 +6,7 @@ function Pagination(){
     const navigate = useNavigate();
     
     const index = ids.indexOf(currentId?? -1);
-    console.log("current index: ",ids, currentId, index, typeof(ids[0]));
+    
     return(
         <div className="navigation">
             <button disabled={index<=0 } onClick={() => navigate(`/artwork/${ids[index-1]}`)}>Previous</button>

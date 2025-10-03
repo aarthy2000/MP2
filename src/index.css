@@ -19,6 +19,20 @@ code {
   padding-top: 5em;
   grid-auto-flow: row;
 }
+.list-grid{
+  width:70%;
+  margin:auto;
+}
+.list-row{
+  display: grid;
+  grid-template-columns: 10%  45% 40% 5%;
+  vertical-align: middle;
+}
+.list-item{
+  padding: 2em;
+  text-align: left;
+  margin-left:0;
+}
 
 .galleryImage{
   width: 400px;

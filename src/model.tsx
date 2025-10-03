@@ -5,14 +5,14 @@ export interface Artwork{
     imageId: string;
     imagePath: string;
     api_link: string;
+    medium: string,
+    artwork_type_title: string,
+    category_titles: string[],
 }
 
 export interface DetailView{
     artwork: Artwork;
     date_start: string,
     date_end: string,
-    medium: string,
-    artwork_type_title: string,
-    category_titles: string[],
     dimensions: string
 }

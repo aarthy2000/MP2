@@ -8,7 +8,6 @@ function Search(){
     async function handleSearch(event: React.KeyboardEvent<HTMLInputElement>) {
         if(event.key === "Enter"){
             const results = await call_artworks_search(data);
-            setData("");
             setArtworks(results); 
         } 
     }
