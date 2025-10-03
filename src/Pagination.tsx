@@ -1,8 +1,8 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAppContext } from "./AppContextProvider";
 
 function Pagination(){
-    const {detailView, ids, currentId, setCurrentId} = useAppContext();
+    const {ids, currentId} = useAppContext();
     const navigate = useNavigate();
     
     const index = ids.indexOf(currentId?? -1);

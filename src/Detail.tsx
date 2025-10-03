@@ -15,7 +15,7 @@ function Detail(){
         });
         setDetailView(true);
         setCurrentId(id);
-    }, [id]);
+    }, [id, setCurrentId, setDetailView]);
     
     return (
         <div>
@@ -23,7 +23,7 @@ function Detail(){
         <div className="modal_container">
             {artworkDetail && (
                 <>
-                <img className="detail_image" src={artworkDetail.artwork.imagePath}></img>
+                <img className="detail_image" src={artworkDetail.artwork.imagePath} alt={artworkDetail.artwork.title}></img>
                 <div className="detail_content">
                     <h1>{artworkDetail.artwork.title}</h1>
                     <h2>Artist: {artworkDetail.artwork.artist}</h2>

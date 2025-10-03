@@ -16,12 +16,12 @@ function Gallery(){
       }
       fetchData();
       
-    },[])
+    },[setArtworks, setDetailView])
 
     useEffect(()=>{
       console.log("umm changes ids",artworks);
        setIds(artworks.map((item: Artwork) => String(item.id)));
-    },[artworks])
+    },[artworks, setIds])
     
     return (
     <div className ="grid">
