@@ -1,14 +1,16 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppContext } from "./AppContextProvider";
 import { Artwork } from "./model";
 
 function Sort(){
-    const {artworks, setArtworks} = useAppContext();
+    const {setArtworks} = useAppContext();
     const [sort, setSort] = useState<string>("");
     const [sortOrder, setSortOrder] = useState<string>("asc");
 
-    const sortedArtworks = useMemo(()=>{
-        const sorted = [...artworks];
+
+    useEffect(()=>{
+        const sortArtworks = (list: Artwork[]) => {
+        const sorted = [...list];
         const weight = sortOrder === "asc" ? 1: -1;
         if(sort === "artist"){
             sorted.sort((a: Artwork,b:Artwork) => weight*a.artist.localeCompare(b.artist))
@@ -16,13 +18,14 @@ function Sort(){
         else if(sort === "title"){
             sorted.sort((a: Artwork,b:Artwork) => weight*a.title.localeCompare(b.title))
         }
-        
-       return sorted;
-    },[sort, sortOrder, artworks])
+        else if(sort === "medium"){
+            sorted.sort((a:Artwork, b:Artwork) => weight*a.medium.localeCompare(b.medium));
+        }
+        return sorted;
+        }
 
-    useEffect(() => {
-        setArtworks(sortedArtworks);
-    }, [sortedArtworks, setArtworks]);
+        setArtworks((prev: Artwork[]) => sortArtworks(prev));
+    },[sort, sortOrder, setArtworks])
 
     return (
         <div>
@@ -30,9 +33,10 @@ function Sort(){
                 <option value="">--Sort by--</option>
                 <option value="artist">Artist</option>
                 <option value="title">Title</option>
+                <option value="medium">Medium</option>
             </select>
 
-            <select value={sortOrder} onChange={e => setSortOrder(e.target.value)} defaultValue={sortOrder}>
+            <select value={sortOrder} onChange={e => setSortOrder(e.target.value)}>
                 <option value="asc">Ascending</option>
                 <option value="desc">Descending</option>
             </select>

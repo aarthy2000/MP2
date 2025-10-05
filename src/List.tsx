@@ -27,15 +27,22 @@ function List(){
     <button onClick={() => navigate(`/`)}>Back to Gallery</button>
     
     <div className ="list-grid">
-        <div className="list-row">
+       
+      <li>
+         <div className="list-row">
             <p className='list-item'>Id</p>
             <p className='list-item'>Title</p>
             <p className='list-item'>Artist</p>
             <p className='list-item'>Medium</p>
         </div>
       {artworks.map((artwork: Artwork) => (
-        <RenderItem key={artwork.id} artwork={artwork} listView={true} />
+        <ul>
+          <RenderItem key={artwork.id} artwork={artwork} listView={true} />
+        </ul>
+        
       ))}
+      </li>
+      
     </div>
     </div>
   );
