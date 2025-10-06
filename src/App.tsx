@@ -1,14 +1,15 @@
-import Gallery from './Gallery'
+import Gallery from './views/Gallery'
 import './App.css';
-import Header from './Header';
-import Search from './Search';
-import Filter from './Filter';
-import Detail from './Detail';
+import Header from './navigation/Header';
+import Search from './buttons/Search';
+import Filter from './buttons/Filter';
+import Detail from './views/Detail';
+import Footer from './navigation/Footer';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { AppContextProvider } from './AppContextProvider';
-import List from './List';
-import Sort from './Sort';
-import Pagination from './Pagination';
+import { AppContextProvider } from './util/AppContextProvider';
+import List from './views/List';
+import Sort from './buttons/Sort';
+import Pagination from './navigation/Pagination';
 
 function App() {
   
@@ -17,8 +18,11 @@ function App() {
       <Router basename="/MP2">
       <Header />
       <Search/>
-      <Sort/>
-      <Filter />
+      <div className="sort_filter_container">
+        <Sort/>
+        <Filter />
+      </div>
+      
       <Routes>
         <Route path="/list" element={<List/>} />
         <Route path="/" element={<Gallery/>} />
@@ -26,6 +30,7 @@ function App() {
         
       </Routes>
      <Pagination/>
+     <Footer/>
     </Router>
     </AppContextProvider>
     

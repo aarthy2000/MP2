@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { Artwork, Artwork_list } from '../model';
+import type { Artwork, Artwork_list } from './model';
 
 export async function call_artworks_get(api_path: string){
     let artwork_list: Artwork_list = { prev_link: null, artworks: [], next_link: null};
@@ -85,7 +85,6 @@ export async function get_specific_artwork(id: string){
     let base_image_url = response.data.config["iiif_url"];
 
     const item = response.data.data;
-      
     let artwork_item: Artwork = {
           title: item.title,
           id: item.id,
@@ -105,6 +104,5 @@ export async function get_specific_artwork(id: string){
         dimensions: item.category,
 
         };
-
     return artwork_item; 
 }
