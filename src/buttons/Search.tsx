@@ -5,11 +5,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 function Search(){
     const [data, setData] = useState("");
-    const {detailView, setArtworks} = useAppContext();
+    const {detailView, setArtworks, setAllArtworks} = useAppContext();
 
     async function handleSearch(event: React.KeyboardEvent<HTMLInputElement>) {
             const results = await call_artworks_search(data);
             setArtworks(results.artworks); 
+            setAllArtworks(results.artworks);
     }
    
     return (

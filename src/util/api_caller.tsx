@@ -1,6 +1,6 @@
 import axios from 'axios';
 import type { Artwork, Artwork_list } from './model';
-
+import placeHolderImg from '../placeholder.webp';
 export async function call_artworks_get(api_path: string){
     let artwork_list: Artwork_list = { prev_link: null, artworks: [], next_link: null};
     
@@ -12,13 +12,13 @@ export async function call_artworks_get(api_path: string){
     
     const base_image_url = response.data.config['iiif_url'];
 
-    let data = response.data.data.filter((item: any) => item.image_id && item.title && item.artist_title);
+    let data = response.data.data;
     let artworks = data.map((item:any) =>({
         id: item.id,
         title: item.title,
         imageId: item.image_id,
         artist: item.artist_title,
-        imagePath: base_image_url + "/"+ item.image_id + '/full/843,/0/default.jpg',
+        imagePath: getImageUrl(item, base_image_url),
         medium: item.medium_display,
         artwork_type_title: item.artwork_type_title,
         category_titles: item.categeory_titles,
@@ -33,6 +33,17 @@ export async function call_artworks_get(api_path: string){
     artwork_list.next_link = response.data.pagination.next_url?? null;
     artwork_list.prev_link = response.data.pagination.prev_url?? null;
     return artwork_list;
+}
+function getImageUrl(item: any, base_path: string){
+  if(item.image_id === null || item.image_id === undefined){
+    return placeHolderImg;
+  }
+  console.log("width",item['thumbnail']?.width);
+  let width = item['thumbnail']?.width ?? 843;
+  width = Math.min(width, 843);
+  return `${base_path}/${item.image_id}/full/${width},/0/default.jpg`
+
+  
 }
 export async function call_artworks_search(searchString: string){
     let artwork_list: Artwork_list = { prev_link: null, artworks: [], next_link: null};
@@ -52,13 +63,13 @@ export async function call_artworks_search(searchString: string){
       },
     });
     let base_image_url = response.data.config["iiif_url"];
-    let data = response.data.data.filter((item: any) => item.image_id && item.title && item.artist_title);
+    let data = response.data.data;
     artwork_list.artworks = data.map((item:any) =>({
         id: item.id,
         title: item.title,
         imageId: item.image_id,
         artist: item.artist_title,
-        imagePath: base_image_url + "/"+ item.image_id + '/full/843,/0/default.jpg',
+        imagePath: getImageUrl(item, base_image_url),
         api_link: item.api_link,
        medium: item.medium_display,
         artwork_type_title: item.artwork_type_title,
@@ -89,7 +100,7 @@ export async function get_specific_artwork(id: string){
           title: item.title,
           id: item.id,
           imageId: item.image_id,
-          imagePath: base_image_url + "/"+ item.image_id + '/full/843,/0/default.jpg',
+          imagePath: getImageUrl(item, base_image_url),
           artist: item.artist_title,
           api_link: item.api_link,
           medium: item.medium_display,

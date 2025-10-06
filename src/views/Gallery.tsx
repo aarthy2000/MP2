@@ -4,20 +4,22 @@ import { useAppContext } from '../util/AppContextProvider';
 import { useEffect } from 'react';
 import { call_artworks_get } from '../util/api_caller';
 import ListButton from '../buttons/List_button';
-//default: "https://api.artic.edu/api/v1/artworks"
+
 function Gallery(){
-    const {setDetailView, setIds, setArtworks, artworks, api_path, setPrevLink, setNextLink, setAllArtworks} = useAppContext();
+    const {setDetailView, setIds, setArtworks, artworks, api_path, setPrevLink, setNextLink, setAllArtworks, allArtWorks} = useAppContext();
     useEffect(()=>{
        async function fetchData() {
         const response = await call_artworks_get(api_path);
+        if (allArtWorks.length === 0) {
         setArtworks(response.artworks);
         setAllArtworks(response.artworks);
         setPrevLink(response.prev_link);
         setNextLink(response.next_link);
+        }
         setDetailView(false);
       }
       fetchData();
-    },[setArtworks, setDetailView, api_path, setNextLink, setPrevLink, setAllArtworks])
+    },[setArtworks, setDetailView, api_path, setNextLink, setPrevLink, setAllArtworks, allArtWorks.length])
 
     useEffect(()=>{
       setIds(artworks.map((item: Artwork) => String(item.id)));
