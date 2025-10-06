@@ -4,22 +4,24 @@ import { useAppContext } from './AppContextProvider';
 import { useEffect } from 'react';
 import { call_artworks_get } from './util/api_caller';
 import { useNavigate } from 'react-router-dom';
-
+//default: "https://api.artic.edu/api/v1/artworks"
 function Gallery(){
-    const {setDetailView, setIds, setArtworks, artworks} = useAppContext();
+    const {setDetailView, setIds, setArtworks, artworks, api_path, setPrevLink, setNextLink, setAllArtworks} = useAppContext();
     const navigate = useNavigate();
     useEffect(()=>{
        async function fetchData() {
-        const response = await call_artworks_get("https://api.artic.edu/api/v1/artworks");
-        setArtworks(response);
+        const response = await call_artworks_get(api_path);
+        setArtworks(response.artworks);
+        setAllArtworks(response.artworks);
+        setPrevLink(response.prev_link);
+        setNextLink(response.next_link);
         setDetailView(false);
       }
       fetchData();
-    },[setArtworks, setDetailView])
+    },[setArtworks, setDetailView, api_path, setNextLink, setPrevLink])
 
     useEffect(()=>{
-      console.log("rtworks changed");
-       setIds(artworks.map((item: Artwork) => String(item.id)));
+      setIds(artworks.map((item: Artwork) => String(item.id)));
     },[artworks, setIds])
     
 

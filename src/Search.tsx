@@ -6,10 +6,8 @@ function Search(){
     const {detailView, setArtworks} = useAppContext();
 
     async function handleSearch(event: React.KeyboardEvent<HTMLInputElement>) {
-        if(event.key === "Enter"){
             const results = await call_artworks_search(data);
-            setArtworks(results); 
-        } 
+            setArtworks(results.artworks); 
     }
    
     return (

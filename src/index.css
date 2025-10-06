@@ -1,3 +1,10 @@
+:root{
+  --color_1: rgb(255, 223, 222);
+  --color1_with_opacity: rgba(255 223 222,0.4);
+  --color_2: rgb(106 123 162);
+  --color2_with_opacity: rgba(106 123 162,0.4)
+  --transparent-black: rgba(0,0,0,0.2);
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -24,10 +31,35 @@ code {
   margin:auto;
 }
  .list-row{
+  position: relative;
+  border: 3px dotted black;
+  width: 100%;
   display: grid;
-  grid-template-columns: 10%  40% 40% 5% 5%;
-  vertical-align: middle;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: repeat(1,1fr);
+  grid-template-areas:
+        "thumbnail list-content";
+  gap: 0.5rem;
+  background-color: var(--color_1);
 } 
+.list-row:hover{
+  background-color: var(--color1_with_opacity);
+}
+#list-content{
+  grid-area: list-content;
+  margin:0;
+  padding:0;
+}
+#title{
+  margin-bottom: 0;
+  padding:0;
+}
+#artist{
+  padding:0;
+}
+#medium{
+  padding:0;
+}
 .list-item{
   padding: 2em;
   text-align: left;
@@ -45,6 +77,15 @@ ul{
   height: 400px;
   display:block;
   padding: 1em;
+}
+
+.listImage{
+  grid-area: thumbnail;
+  width: 70px;
+  height: 70px;
+  padding: 1em;
+  border-radius: 5em;
+  vertical-align: middle;
 }
 
 .galleryImage:hover{
