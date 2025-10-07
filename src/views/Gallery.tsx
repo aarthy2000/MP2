@@ -24,7 +24,7 @@ function Gallery(){
         }
         fillGallery();
         setDetailView(false);
-    },[setDetailView, allArtWorks.length])
+    },[setDetailView, allArtWorks.length, api_path,setAllArtworks,setArtworks,setNextLink,setPrevLink])
 
     useEffect(()=>{
       console.log("only setIds was updated");

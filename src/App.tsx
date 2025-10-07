@@ -1,7 +1,6 @@
 import Gallery from './views/Gallery'
 import './App.css';
 import Header from './navigation/Header';
-import Search from './buttons/Search';
 import Filter from './buttons/Filter';
 import Detail from './views/Detail';
 import Footer from './navigation/Footer';
