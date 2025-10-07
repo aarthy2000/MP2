@@ -16,21 +16,26 @@ function App() {
   return (
     <AppContextProvider>
       <Router basename="/MP2">
-      <Header />
-      <Search/>
-      <div className="sort_filter_container">
-        <Sort/>
-        <Filter />
+      <div className="app-container">
+        <Header />
+
+        <main className="content">
+          <div className="sort_filter_container">
+            <Sort/>
+            <Filter />
+          </div>
+
+          <Routes>
+            <Route path="/list" element={<List/>} />
+            <Route path="/" element={<Gallery/>} />
+            <Route path="/artwork/:id" element={<Detail />} />
+          </Routes>
+
+          <Pagination/>
+        </main>
+
+        <Footer/>
       </div>
-      
-      <Routes>
-        <Route path="/list" element={<List/>} />
-        <Route path="/" element={<Gallery/>} />
-        <Route path="/artwork/:id" element={<Detail />} />
-        
-      </Routes>
-     <Pagination/>
-     <Footer/>
     </Router>
     </AppContextProvider>
     

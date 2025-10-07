@@ -4,6 +4,7 @@ import { useAppContext } from '../util/AppContextProvider';
 import { useEffect } from 'react';
 import { call_artworks_get } from '../util/api_caller';
 import ListButton from '../buttons/List_button';
+import Search from '../buttons/Search';
 
 function Gallery(){
     const {setDetailView, setIds, setArtworks, artworks, api_path,setPrevLink, setNextLink, setAllArtworks, allArtWorks} = useAppContext();
@@ -47,6 +48,7 @@ function Gallery(){
 
     return (
       <div>
+        <Search/>
         <ListButton/>
     <div className ="grid">
       {artworks.map((artwork: Artwork) => (

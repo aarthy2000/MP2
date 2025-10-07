@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 function GalleryButton(){
     const navigate = useNavigate();
     return (
-        <button className="button" onClick={()=>navigate(`/`)}><FontAwesomeIcon className="icon" icon={faGrip}></FontAwesomeIcon>Gallery</button>
+        <button className="button" onClick={()=>navigate(`/`)}><FontAwesomeIcon className="icon" icon={faGrip}></FontAwesomeIcon>Gallery View</button>
     )
 }
 export default GalleryButton;

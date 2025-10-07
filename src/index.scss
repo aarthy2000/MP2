@@ -1,3 +1,7 @@
+html, body, #root {
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -20,13 +24,27 @@ code {
     padding: 1em;
 }
 .footer{
-  margin-top: 2em;
-  margin-bottom: 0;
-
+    background-color: black;
+    color: white;
+    width: 100%;
+    text-align:center;
+    padding: 1em;
 }
 .icon{
   padding: 0.2em;
   margin-right: 5px;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 @mixin --button{
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.6);
@@ -206,7 +224,7 @@ object-fit: cover;
   align-items: center;
   justify-content: center;
   margin:auto;
-  margin-top:20px;
+  height: auto;
 }
 
 .detail_image{
@@ -217,9 +235,9 @@ object-fit: cover;
 height: auto;
 }
 
-
 .detail_content{
   text-align: left;
+  height: auto;
 }
 .sort_filter_container,.return-to-main-menu{
   display: grid;
@@ -267,8 +285,6 @@ height: auto;
   grid-template-columns: 1fr 3fr; 
   grid-template-rows: auto;
   gap: 8px; 
-  // align-items: center;
-  // width: 30%;
   border: 2px solid black;
   margin-right: 2em;
 }

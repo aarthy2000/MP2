@@ -4,6 +4,7 @@ import { useAppContext } from '../util/AppContextProvider';
 import { useEffect } from 'react';
 import { call_artworks_get } from '../util/api_caller';
 import GalleryButton from '../buttons/Gallery_button';
+import Search from '../buttons/Search';
 
 function List(){
     const {allArtWorks, setDetailView, setIds, setArtworks, artworks, api_path, setPrevLink, setNextLink, setAllArtworks} = useAppContext();
@@ -48,6 +49,7 @@ function List(){
     
     return (
     <div>
+    <Search/>
     <GalleryButton/>
     
     <div className ="list-grid">
