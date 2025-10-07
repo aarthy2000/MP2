@@ -24,7 +24,7 @@ function FilterResults() {
 
     return (
         <div className="search-div">
-                <input className="chip" type="text" placeholder="Filter wihtin results" value={searchText} onChange={(e) => setSearchText(e.target.value)}></input> 
+                <input className="chip" type="text" placeholder="Filter within results" value={searchText} onChange={(e) => setSearchText(e.target.value)}></input> 
                 <FontAwesomeIcon className="clear-button" onClick={()=>setSearchText("")} icon={faCircleXmark}></FontAwesomeIcon>
                 </div>
     )
