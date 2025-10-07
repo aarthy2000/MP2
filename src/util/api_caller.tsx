@@ -1,6 +1,28 @@
 import axios from 'axios';
 import type { Artwork, Artwork_list } from './model';
 import placeHolderImg from '../placeholder.webp';
+function mapper(item: any, base_image_url: string){
+  let artwork: Artwork = {
+        id: item.id,
+        title: item.title??"N/A",
+        imageId: item.image_id??null,
+        artist: item.artist_title??"N/A",
+        imagePath: getImageUrl(item, base_image_url),
+        medium: item.medium_display??"",
+        artwork_type_title: item.artwork_type_title??"",
+        category_titles: item.categeory_titles??[],
+        is_on_view: item.is_on_view??true,
+        is_public_domain: item.is_public_domain??true,
+        has_multimedia_resources: item.has_multimedia_resources??true,
+        has_not_been_viewed_much: item.has_not_been_viewed_much??true,
+        date_start: item.date_start??-1,
+        date_end: item.date_end??-1,
+        api_link: item.api_link,
+    }
+
+    return artwork;
+
+}
 export async function call_artworks_get(api_path: string){
   
     let artwork_list: Artwork_list = { prev_link: null, artworks: [], next_link: null};
@@ -14,22 +36,7 @@ export async function call_artworks_get(api_path: string){
     const base_image_url = response.data.config['iiif_url'];
 
     let data = response.data.data;
-    let artworks = data.map((item:any) =>({
-        id: item.id,
-        title: item.title,
-        imageId: item.image_id,
-        artist: item.artist_title,
-        imagePath: getImageUrl(item, base_image_url),
-        medium: item.medium_display,
-        artwork_type_title: item.artwork_type_title,
-        category_titles: item.categeory_titles,
-        is_on_view: item.is_on_view??true,
-          is_public_domain: item.is_public_domain??true,
-          has_multimedia_resources: item.has_multimedia_resources??true,
-          has_not_been_viewed_much: item.has_not_been_viewed_much??true,
-          date_start: item.date_start,
-          date_end: item.date_end
-    }));    
+    let artworks = data.map((item:any) =>(mapper(item, base_image_url)));    
     artwork_list.artworks = artworks;
     artwork_list.next_link = response.data.pagination.next_url?? null;
     artwork_list.prev_link = response.data.pagination.prev_url?? null;
@@ -66,23 +73,7 @@ export async function call_artworks_search(searchString: string){
     });
     let base_image_url = response.data.config["iiif_url"];
     let data = response.data.data;
-    artwork_list.artworks = data.map((item:any) =>({
-        id: item.id,
-        title: item.title,
-        imageId: item.image_id,
-        artist: item.artist_title,
-        imagePath: getImageUrl(item, base_image_url),
-        api_link: item.api_link,
-       medium: item.medium_display,
-        artwork_type_title: item.artwork_type_title,
-        category_titles: item.categeory_titles,
-        is_on_view: item.is_on_view??true,
-          is_public_domain: item.is_public_domain??true,
-          has_multimedia_resources: item.has_multimedia_resources??true,
-          has_not_been_viewed_much: item.has_not_been_viewed_much??true,
-          date_start: item.date_start,
-          date_end: item.date_end
-    }));
+    artwork_list.artworks = data.map((item:any) =>(data.map((item:any) =>(mapper(item, base_image_url)))));
     console.log("response fetched again: ",artwork_list);
     return artwork_list;
 }
@@ -98,25 +89,7 @@ export async function get_specific_artwork(id: string){
     let base_image_url = response.data.config["iiif_url"];
 
     const item = response.data.data;
-    let artwork_item: Artwork = {
-          title: item.title,
-          id: item.id,
-          imageId: item.image_id,
-          imagePath: getImageUrl(item, base_image_url),
-          artist: item.artist_title,
-          api_link: item.api_link,
-          medium: item.medium_display,
-          artwork_type_title: item.artwork_type_title,
-          category_titles: item.category_titles,
-          is_on_view: item.is_on_view??true,
-          is_public_domain: item.is_public_domain??true,
-          has_multimedia_resources: item.has_multimedia_resources??true,
-          has_not_been_viewed_much: item.has_not_been_viewed_much??true,
-          date_start: item.date_start,
-        date_end: item.date_end,
-        dimensions: item.category,
+    let artwork_item: Artwork = mapper(item, base_image_url);
 
-        };
-      console.log("response: ", artwork_item);
     return artwork_item; 
 }

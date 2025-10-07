@@ -14,7 +14,6 @@ export interface Artwork{
     is_on_view: boolean,
     date_start: string,
     date_end: string,
-    dimensions: string,
 }
 
 
