@@ -50,7 +50,7 @@ code {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.6);
   cursor: pointer;
   padding: 0.5em 3em;
-  margin-left: 1em;
+  // margin-left: 1em;
   // margin-right: 1em;
   background-color: black;
   color: white;
@@ -210,6 +210,7 @@ object-fit: cover;
 }
 .navigation > button{
   @include --button;
+  // margin-left:0;
 }
 .navigation > button:disabled{
   @include --button_disabled;
@@ -256,6 +257,7 @@ height: auto;
   @include --button;
   margin-top: 5em;
   margin-bottom: 5em;
+  margin-left: 1em;
 }
 .pagination:disabled{
 @include --button_disabled;
