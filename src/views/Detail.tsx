@@ -22,7 +22,6 @@ function Detail(){
     useEffect(() => {
         get_specific_artwork(id as string).then(response =>{
             setArtworkDetail(response);
-            console.log('detail view',response);
         });
         
         setDetailView(true);

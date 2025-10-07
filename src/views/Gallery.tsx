@@ -6,25 +6,43 @@ import { call_artworks_get } from '../util/api_caller';
 import ListButton from '../buttons/List_button';
 
 function Gallery(){
-    const {setDetailView, setIds, setArtworks, artworks, api_path, setPrevLink, setNextLink, setAllArtworks, allArtWorks} = useAppContext();
+    const {setDetailView, setIds, setArtworks, artworks, api_path,setPrevLink, setNextLink, setAllArtworks, allArtWorks} = useAppContext();
+    
     useEffect(()=>{
-       async function fetchData() {
+       async function fillGallery() {
+        async function fetchData(){
         const response = await call_artworks_get(api_path);
-        if (allArtWorks.length === 0) {
         setArtworks(response.artworks);
         setAllArtworks(response.artworks);
         setPrevLink(response.prev_link);
         setNextLink(response.next_link);
-        }
-        setDetailView(false);
       }
-      fetchData();
+        if(allArtWorks.length===0){
+          await fetchData()
+        }
+        }
+        fillGallery();
+        setDetailView(false);
     },[setArtworks, setDetailView, api_path, setNextLink, setPrevLink, setAllArtworks, allArtWorks.length])
 
     useEffect(()=>{
       setIds(artworks.map((item: Artwork) => String(item.id)));
     },[artworks, setIds, setAllArtworks])
     
+    useEffect(()=>{
+      async function fetchData(){
+        const response = await call_artworks_get(api_path);
+        setArtworks(response.artworks);
+        setAllArtworks(response.artworks);
+        setPrevLink(response.prev_link);
+        setNextLink(response.next_link);
+      }
+      async function movePage(){
+        await fetchData();
+      }
+      movePage();
+      setDetailView(false);
+    },[api_path, setPrevLink, setNextLink, setAllArtworks, setArtworks, setDetailView])
 
     return (
       <div>

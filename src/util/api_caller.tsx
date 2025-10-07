@@ -38,7 +38,6 @@ function getImageUrl(item: any, base_path: string){
   if(item.image_id === null || item.image_id === undefined){
     return placeHolderImg;
   }
-  console.log("width",item['thumbnail']?.width);
  let width = item['thumbnail']?.width;
   width = (typeof width === 'number' && width > 0) ? Math.min(width, 843) : 843;
 
