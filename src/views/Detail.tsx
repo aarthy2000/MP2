@@ -7,7 +7,7 @@ import GalleryButton from "../buttons/Gallery_button";
 import ListButton from "../buttons/List_button";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faCalendar, faFileAudio, faCopyright, faBrush, faLayerGroup, faPalette, faUserPen, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faCalendar, faFileAudio, faCopyright, faBrush, faPalette, faUserPen, faStar } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 function Icon({icon}:{icon: IconProp}){
     return (
