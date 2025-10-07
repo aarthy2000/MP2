@@ -73,7 +73,7 @@ export async function call_artworks_search(searchString: string){
     });
     let base_image_url = response.data.config["iiif_url"];
     let data = response.data.data;
-    artwork_list.artworks = data.map((item:any) =>(data.map((item:any) =>(mapper(item, base_image_url)))));
+    artwork_list.artworks = data.map((item:any) =>mapper(item, base_image_url));
     console.log("response fetched again: ",artwork_list);
     return artwork_list;
 }
