@@ -12,11 +12,9 @@ function Search(){
             setArtworks(results.artworks); 
             setAllArtworks(results.artworks);
     }
-   
     return (
          <>
         {
-           
             !detailView && (
                 <div className="search-div">
            <input className="chip" type="text" placeholder="Search" value={data} onChange={(e) => setData(e.target.value)} onKeyDown={handleSearch}></input> 

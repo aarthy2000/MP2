@@ -2,6 +2,7 @@ import axios from 'axios';
 import type { Artwork, Artwork_list } from './model';
 import placeHolderImg from '../placeholder.webp';
 export async function call_artworks_get(api_path: string){
+  
     let artwork_list: Artwork_list = { prev_link: null, artworks: [], next_link: null};
     
     const response = await axios.get(api_path, {
@@ -32,6 +33,8 @@ export async function call_artworks_get(api_path: string){
     artwork_list.artworks = artworks;
     artwork_list.next_link = response.data.pagination.next_url?? null;
     artwork_list.prev_link = response.data.pagination.prev_url?? null;
+
+    console.log("response fetched again: ",artwork_list);
     return artwork_list;
 }
 function getImageUrl(item: any, base_path: string){
@@ -54,8 +57,7 @@ export async function call_artworks_search(searchString: string){
     });
     
     let ids = response.data.data.map((item: any) => item.id);
-    
-    
+
 
     response = await axios.get("https://api.artic.edu/api/v1/artworks?ids="+ids, {
       headers: {
@@ -81,7 +83,7 @@ export async function call_artworks_search(searchString: string){
           date_start: item.date_start,
           date_end: item.date_end
     }));
-
+    console.log("response fetched again: ",artwork_list);
     return artwork_list;
 }
 
@@ -115,5 +117,6 @@ export async function get_specific_artwork(id: string){
         dimensions: item.category,
 
         };
+      console.log("response: ", artwork_item);
     return artwork_item; 
 }

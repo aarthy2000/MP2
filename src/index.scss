@@ -15,12 +15,9 @@ code {
     background-color: black;
     color: white;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 4em;
-    font-size: 2em;
+    text-align:center;
     margin-bottom: 2em;
+    padding: 1em;
 }
 .footer{
   margin-top: 2em;
@@ -33,17 +30,14 @@ code {
 }
 @mixin --button{
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.6);
-  font-size:large;
   cursor: pointer;
-  padding-left: 3em;
-  padding-right: 3em;
+  padding: 0.5em 3em;
   margin-left: 1em;
   margin-right: 1em;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
   background-color: black;
   color: white;
-  min-width: 15em;
+  min-width: unset;
+  width: fit-content;
 }
 @mixin --button_disabled{
   background-color: rgba(0,0,0,0.3);
@@ -59,47 +53,63 @@ code {
 
 /*Search*/
 
-.chip {
-  display: inline-block;
-  margin-top: 2em;
-  margin-left: 10em;
-  height: 50px;
-  border-radius: 25px;
-  width: 80%;
-  text-align: left;
-  text-indent: 3%;
+.search-div {
+  position: relative;
+  width: min(90%, 600px);
+  margin: 2em auto;
 }
-.clear-button{
-font-size: larger;
+
+.chip {
+  width: 100%;
+  height: 3em;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  text-indent: 1em;
+  font-size: 1rem;
+  padding-right: 2.5em;
+  box-sizing: border-box;
+}
+
+.clear-button {
+  position: absolute;
+  right: 1em;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #555;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: color 0.2s ease;
+}
+
+.clear-button:hover {
+  color: black;
 }
 
 /*Gallery view*/
 
-.grid{
+.grid {
+  width: 60%;
   display: grid;
-  grid-template-columns: auto auto auto;
-  padding-top: 5em;
-  grid-auto-flow: row;
-  gap: 1em;
-  align-items: center;
-  margin:auto;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  padding: 3em;
+  gap: 2em;
+  align-items: start;
+  margin: auto;
   justify-content: center;
 }
 
-.galleryImage{
-  width: 400px;
-  height: 400px;
-  display:block;
-  padding: 0;
-  padding-left:0;
-  padding-right: 0;
+.galleryImage {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+  transition: border 0.2s ease;
 }
 
-.galleryImage:hover{
+.galleryImage:hover {
   cursor: pointer;
-  padding: 0em;
   border: 2px solid black;
-
 }
 
 /*List view*/
@@ -154,8 +164,10 @@ ul{
 
 .listImage{
   grid-area: thumbnail;
-  width: 100px;
-  height: 100px;
+  width: 100%;
+max-width: 100px;
+aspect-ratio: 1 / 1;
+object-fit: cover;
   padding: 1em;
   border-radius: 5em;
   vertical-align: middle;
@@ -198,12 +210,11 @@ ul{
 }
 
 .detail_image{
-  width: 400px;
-  height: 400px;
-  display:block;
-  padding: 1em;
-  margin-right: 2em;
-  grid-area: 1;
+  width: 100%;
+max-width: 400px;
+aspect-ratio: 1 / 1;
+object-fit: cover;
+height: auto;
 }
 
 
@@ -253,7 +264,7 @@ ul{
 // Filter
 .filter-div {
   display: grid;
-  grid-template-columns: 5% 95%; 
+  grid-template-columns: 1fr 3fr; 
   grid-template-rows: auto;
   gap: 8px; 
   // align-items: center;

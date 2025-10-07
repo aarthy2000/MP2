@@ -10,6 +10,7 @@ function List(){
     
     useEffect(()=>{
       async function fetchData(){
+        console.log("Lis ")
         const response = await call_artworks_get(api_path);
         setArtworks(response.artworks);
         setAllArtworks(response.artworks);
