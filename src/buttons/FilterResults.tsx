@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAppContext } from "../util/AppContextProvider";
 import { Artwork } from "../util/model";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleXmark, faFilter } from "@fortawesome/free-solid-svg-icons";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 function FilterResults() {
   const { setArtworks, allArtWorks } = useAppContext(); 
   const [searchText, setSearchText] = useState<string>("");
