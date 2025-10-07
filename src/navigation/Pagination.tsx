@@ -5,7 +5,7 @@ import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
 function Pagination(){
     const {prevLink, nextLink,setApi_path, detailView} = useAppContext();
     const changeApiPath = (link: any):void => {
-        console.log("changing path: ",link);
+
         setApi_path(link);
     }
     return (

@@ -45,10 +45,9 @@ function Detail(){
                 <div className="detail_content">
                     <h2 className="title">{artworkDetail.title}</h2>
                     <h3><Icon icon={faUserPen}/>Artist: {artworkDetail.artist}</h3>
-                    <h4><Icon icon={faCalendar}/>Started on: {artworkDetail.date_start}</h4>
-                    <h4><Icon icon={faCalendar}/>Ended on:{artworkDetail.date_end}</h4>
+                    <h4><Icon icon={faCalendar}/>Started on: {artworkDetail.date_start === "-1"?"N/A":artworkDetail.date_start}</h4>
+                    <h4><Icon icon={faCalendar}/>Ended on:{artworkDetail.date_end === "-1"?"N/A":artworkDetail.date_end}</h4>
                     <h5><Icon icon={faPalette}/>Medium: {artworkDetail.medium}</h5>
-                    <h5><Icon icon={faLayerGroup}/>Category: {artworkDetail.category_titles}</h5>
                     <h5><Icon icon={faBrush}/>Artwork type: {artworkDetail.artwork_type_title}</h5>
                     <h5><Icon icon={faEye}/>Is on display: {print_boolean(artworkDetail.is_on_view)}</h5>
                     <h5><Icon icon={faStar}/>Is less viewed: {print_boolean(artworkDetail.has_not_been_viewed_much)}</h5>

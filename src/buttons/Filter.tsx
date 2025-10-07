@@ -14,7 +14,6 @@ function Filter() {
     date_1: 0,
     date_2: 9999,
   });
-
   useEffect(() => {
     let filtered: Artwork[] = [...allArtWorks];
 

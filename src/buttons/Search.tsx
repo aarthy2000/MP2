@@ -17,7 +17,7 @@ function Search(){
         {
             !detailView && (
                 <div className="search-div">
-           <input className="chip" type="text" placeholder="Search" value={data} onChange={(e) => setData(e.target.value)} onKeyDown={handleSearch}></input> 
+           <input className="chip" type="text" placeholder="Search the API" value={data} onChange={(e) => setData(e.target.value)} onKeyDown={handleSearch}></input> 
            <FontAwesomeIcon className="clear-button" onClick={()=>setData("")} icon={faCircleXmark}></FontAwesomeIcon>
            </div>
             )

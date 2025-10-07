@@ -5,13 +5,13 @@ import { useEffect } from 'react';
 import { call_artworks_get } from '../util/api_caller';
 import GalleryButton from '../buttons/Gallery_button';
 import Search from '../buttons/Search';
+import FilterResults from '../buttons/FilterResults';
 
 function List(){
     const {allArtWorks, setDetailView, setIds, setArtworks, artworks, api_path, setPrevLink, setNextLink, setAllArtworks} = useAppContext();
     
     useEffect(()=>{
       async function fetchData(){
-        console.log("Lis ")
         const response = await call_artworks_get(api_path);
         setArtworks(response.artworks);
         setAllArtworks(response.artworks);
@@ -30,7 +30,11 @@ function List(){
     useEffect(()=>{
       setIds(artworks.map((item: Artwork) => String(item.id)));
     },[artworks, setIds, setAllArtworks])
-    
+
+    useEffect(()=>{
+      setIds(artworks.map((item: Artwork) => String(item.id)));
+    },[setArtworks, setIds,artworks])
+
     useEffect(()=>{
       async function fetchData(){
         const response = await call_artworks_get(api_path);
@@ -50,6 +54,7 @@ function List(){
     return (
     <div>
     <Search/>
+    <FilterResults/>
     <GalleryButton/>
     
     <div className ="list-grid">

@@ -7,7 +7,6 @@ export interface Artwork{
     api_link: string;
     medium: string,
     artwork_type_title: string,
-    category_titles: string[],
     has_not_been_viewed_much: boolean,
     is_public_domain: boolean,
     has_multimedia_resources: boolean,

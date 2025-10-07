@@ -10,13 +10,12 @@ function mapper(item: any, base_image_url: string){
         imagePath: getImageUrl(item, base_image_url),
         medium: item.medium_display??"",
         artwork_type_title: item.artwork_type_title??"",
-        category_titles: item.categeory_titles??[],
         is_on_view: item.is_on_view??true,
         is_public_domain: item.is_public_domain??true,
         has_multimedia_resources: item.has_multimedia_resources??true,
         has_not_been_viewed_much: item.has_not_been_viewed_much??true,
-        date_start: item.date_start??-1,
-        date_end: item.date_end??-1,
+        date_start: item.date_start??"-1",
+        date_end: item.date_end??"-1",
         api_link: item.api_link,
     }
 
@@ -41,7 +40,6 @@ export async function call_artworks_get(api_path: string){
     artwork_list.next_link = response.data.pagination.next_url?? null;
     artwork_list.prev_link = response.data.pagination.prev_url?? null;
 
-    console.log("response fetched again: ",artwork_list);
     return artwork_list;
 }
 function getImageUrl(item: any, base_path: string){
@@ -74,7 +72,6 @@ export async function call_artworks_search(searchString: string){
     let base_image_url = response.data.config["iiif_url"];
     let data = response.data.data;
     artwork_list.artworks = data.map((item:any) =>mapper(item, base_image_url));
-    console.log("response fetched again: ",artwork_list);
     return artwork_list;
 }
 

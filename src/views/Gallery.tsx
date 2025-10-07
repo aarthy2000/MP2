@@ -27,7 +27,6 @@ function Gallery(){
     },[setDetailView, allArtWorks.length, api_path,setAllArtworks,setArtworks,setNextLink,setPrevLink])
 
     useEffect(()=>{
-      console.log("only setIds was updated");
       setIds(artworks.map((item: Artwork) => String(item.id)));
     },[artworks, setIds, setAllArtworks])
     
